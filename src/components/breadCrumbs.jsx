@@ -4,6 +4,7 @@ import { styled } from 'linaria/react';
 const Head = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom:20px;
   height: 40px;
   background-color: white;
   border-bottom: 2px solid #a0a0a0;
