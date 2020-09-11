@@ -1,17 +1,12 @@
 import React from 'react';
-import Header from './header';
-import BreadCrumbs from './breadCrumbs';
-import FormsPage from './forms';
-import ColorsPage from './colorsPage';
-
+import SideBar from './sideBar';
+import Body from './body';
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <BreadCrumbs />
-      <FormsPage />
-      <ColorsPage />
+      <SideBar />
+      <Body />
     </div>
   );
 };

@@ -1,5 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { styled } from 'linaria/react';
+import { Link, NavLink } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import PopUpMenu from './popUp';
+import * as actions from '../actions';
 
 const Head = styled.div`
   display: flex;
@@ -28,7 +33,10 @@ const Right = styled.ul`
   li{
     display: flex;
     padding-right: 25px;
+    text-decoration: none;
+
   }
+  
 `;
 
 const Picture = styled.div`
@@ -44,12 +52,14 @@ const Hamburger = styled.div`
   background-size: contain;
 `;
 
-const Header = () => {
+const Header = ({ tog }) => {
   return (
     <Head>
       <Left>
-        <Hamburger />
-        <li>Dashboard</li>
+        <Hamburger
+          onClick={tog}
+        />
+        <li><NavLink to="/chart">Dashboard</NavLink></li>
         <li>Users</li>
         <li>Settings</li>
       </Left>
@@ -75,9 +85,18 @@ const Header = () => {
           />
         </li>
         <li>
-          <Picture
-            image="url('../../../src/sprite.png') 469px 440px"
-          />
+          <Popup
+            trigger={
+              (
+                <Picture
+                  image="url('../../../src/sprite.png') 469px 440px"
+                />
+              )
+            }
+            position="bottom center"
+          >
+            <PopUpMenu />
+          </Popup>
         </li>
         <li>
           <Picture
@@ -88,4 +107,11 @@ const Header = () => {
     </Head>
   );
 };
-export default Header;
+
+const mapStateToProps = (state) => {
+  return {
+    isOpen: state,
+  }
+};
+
+export default connect(mapStateToProps, actions)(Header);
